@@ -1,12 +1,5 @@
-import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
 from scipy.stats import skew
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
-from sklearn.metrics import classification_report, confusion_matrix
-import seaborn as sns
-#from ploting import distribution as dis_plot
 
 if __name__ == "__main__":
     train = pd.read_csv("../input/train.csv")
