@@ -1,10 +1,10 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+from scipy import stats
+import matplotlib.style as style
+
 def plotting_3_chart(df, feature):
-    ## Importing seaborn, matplotlab and scipy modules.
-    import seaborn as sns
-    import matplotlib.pyplot as plt
-    import matplotlib.gridspec as gridspec
-    from scipy import stats
-    import matplotlib.style as style
     style.use('fivethirtyeight')
 
     ## Creating a customized chart. and giving in figsize and everything.
@@ -32,4 +32,5 @@ def plotting_3_chart(df, feature):
     ## Set title.
     ax3.set_title('Box Plot')
     ## Plotting the box plot.
-    sns.boxplot(df.loc[:, feature], orient='v', ax=ax3);
+    sns.boxplot(df.loc[:, feature], orient='v', ax=ax3)
+    plt.show()

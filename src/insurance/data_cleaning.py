@@ -1,11 +1,11 @@
+from scipy.stats import skew
+from scipy.special import boxcox1p
+from scipy.stats import boxcox_normmax
+
 def fixing_skewness(df):
     """
     This function takes in a dataframe and return fixed skewed dataframe
     """
-    ## Import necessary modules
-    from scipy.stats import skew
-    from scipy.special import boxcox1p
-    from scipy.stats import boxcox_normmax
 
     ## Getting all the data that are not of "object" type.
     numeric_feats = df.dtypes[df.dtypes != "object"].index
@@ -17,3 +17,13 @@ def fixing_skewness(df):
 
     for feat in skewed_features:
         df[feat] = boxcox1p(df[feat], boxcox_normmax(df[feat] + 1))
+
+
+def removing_objects(data):
+    # Replacing str values with boolean 0 and 1 values
+    sex = {'male': 0, 'female': 1}
+    data.sex = [sex[item] for item in data.sex]
+    smoker = {'no': 0, 'yes': 1}
+    data.smoker = [smoker[item] for item in data.smoker]
+    region = {'northwest': 1, 'southeast': 2, 'northeast': 3, 'southwest': 4}
+    data.region = [region[item] for item in data.region]
