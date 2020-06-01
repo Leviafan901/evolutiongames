@@ -13,7 +13,6 @@ def final_sets(data):
     ## Dropping the target variable.
     all_data.drop([TARGET_PREDICTION_VALUE], axis=1, inplace=True)
     data_cleaning.fixing_skewness(all_data)
-    print(all_data.head())
     final_features = pd.get_dummies(all_data).reset_index(drop=True)
     random_data_subsets = final_features.iloc[:len(to_predict), :]
     ## Train test split follows this distinguished code pattern and helps creating train and test sets
