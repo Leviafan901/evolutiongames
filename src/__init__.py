@@ -5,7 +5,7 @@ from src.data_preparation.features_creation import final_sets
 
 
 def main():
-    data = load_drop_empty()
+    data = load_drop_empty('../data/train.csv', '../data/test.csv')
     data_cleaning.removing_objects(data)
     X_train, X_test, y_train, y_test = final_sets(data)
     train(X_train, X_test, y_train, y_test)
