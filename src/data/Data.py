@@ -1,5 +1,5 @@
 class Data:
 
-    def __init__(self, train, test):
-        self.train = train
-        self.test = test
+    def __init__(self, train_set, test_set):
+        self.train_set = train_set
+        self.test_set = test_set

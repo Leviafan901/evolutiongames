@@ -1,26 +1,23 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from src.data_processing import data_cleaning
+from src.data.load_data import load_drop_empty
 from sklearn.model_selection import train_test_split
+
+TARGET_PREDICTION_VALUE = 'charges'
 
 
 def main():
-    train = pd.read_csv("../data/train.csv")
-    train = train.dropna()
-    test = pd.read_csv("../data/test.csv")
-    test = test.dropna()
-
-    data_cleaning.removing_objects(train)
-    data_cleaning.removing_objects(test)
-
-    print("Skewness: " + str(train['charges'].skew()))
-    print("Kurtosis: " + str(train['charges'].kurt()))
-
+    data = load_drop_empty()
+    data_cleaning.removing_objects(data.train_set)
+    data_cleaning.removing_objects(data.test_set)
     ## Saving the target values in y
-    y = train['charges'].reset_index(drop=True)
-    all_data = pd.concat((train, test)).reset_index(drop=True)
+    y = data.train_set[TARGET_PREDICTION_VALUE].reset_index(drop=True)
+    all_data = pd.concat((data.train_set, data.test_set)).reset_index(drop=True)
+    print("Skewness: " + str(all_data[TARGET_PREDICTION_VALUE].skew()))
+    print("Kurtosis: " + str(all_data[TARGET_PREDICTION_VALUE].kurt()))
     ## Dropping the target variable.
-    all_data.drop(['charges'], axis=1, inplace=True)
+    all_data.drop([TARGET_PREDICTION_VALUE], axis=1, inplace=True)
     data_cleaning.fixing_skewness(all_data)
     final_features = pd.get_dummies(all_data).reset_index(drop=True)
     print(final_features.shape)
