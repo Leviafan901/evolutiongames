@@ -4,9 +4,9 @@ import matplotlib.gridspec as gridspec
 from scipy import stats
 import matplotlib.style as style
 
-def plotting_3_chart(df, feature):
-    style.use('fivethirtyeight')
 
+def normal_distribution_chart(df, feature):
+    style.use('fivethirtyeight')
     ## Creating a customized chart. and giving in figsize and everything.
     fig = plt.figure(constrained_layout=True, figsize=(12, 8))
     ## creating a grid of 3 cols and 3 rows.
