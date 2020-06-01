@@ -15,10 +15,12 @@ def fixing_skewness(data):
 
 
 def removing_objects(data):
-    # Replacing str values with boolean 0 and 1 values
-    sex = {'male': 0, 'female': 1}
-    data.sex = [sex[item] for item in data.sex]
-    smoker = {'no': 0, 'yes': 1}
-    data.smoker = [smoker[item] for item in data.smoker]
-    region = {'northwest': 1, 'southeast': 2, 'northeast': 3, 'southwest': 4}
-    data.region = [region[item] for item in data.region]
+    sets = (data.train_set, data.test_set)
+    for set in sets:
+        # Replacing str values with boolean 0 and 1 values
+        sex = {'male': 0, 'female': 1}
+        set.sex = [sex[item] for item in set.sex]
+        smoker = {'no': 0, 'yes': 1}
+        set.smoker = [smoker[item] for item in set.smoker]
+        region = {'northwest': 1, 'southeast': 2, 'northeast': 3, 'southwest': 4}
+        set.region = [region[item] for item in set.region]

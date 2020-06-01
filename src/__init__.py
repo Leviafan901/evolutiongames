@@ -9,8 +9,8 @@ TARGET_PREDICTION_VALUE = 'charges'
 
 def main():
     data = load_drop_empty()
-    data_cleaning.removing_objects(data.train_set)
-    data_cleaning.removing_objects(data.test_set)
+    data_cleaning.removing_objects(data)
+
     ## Saving the target values in y
     y = data.train_set[TARGET_PREDICTION_VALUE].reset_index(drop=True)
     all_data = pd.concat((data.train_set, data.test_set)).reset_index(drop=True)
@@ -20,16 +20,15 @@ def main():
     all_data.drop([TARGET_PREDICTION_VALUE], axis=1, inplace=True)
     data_cleaning.fixing_skewness(all_data)
     final_features = pd.get_dummies(all_data).reset_index(drop=True)
-    print(final_features.shape)
     X = final_features.iloc[:len(y), :]
-    ## Train test split follows this distinguished code pattern and helps creating train and test set to build machine learning.
+    ## Train test split follows this distinguished code pattern and helps creating train and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.33, random_state=0)
 
     lin_reg_model = LinearRegression(normalize=True, n_jobs=-1)
     lin_reg_model.fit(X_train, y_train)
     lin_reg_model.predict(X_test)
     accuracy = lin_reg_model.score(X_test, y_test)
-    print(accuracy)
+    print(f'Accuracy ', accuracy)
 
 
 if __name__ == "__main__":
