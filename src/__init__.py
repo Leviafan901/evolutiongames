@@ -1,7 +1,7 @@
 from src.model_training.train_model import train
 from src.data_processing import data_cleaning
 from src.data.load_data import load_drop_empty
-from src.data_preparation.features_creation import final_sets
+from src.data_preparation.features_engineering import final_sets
 
 
 def main():

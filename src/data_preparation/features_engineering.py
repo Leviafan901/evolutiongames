@@ -10,8 +10,6 @@ def final_sets(data):
     ## Saving the target values in y
     y = data.train_set[TARGET_PREDICTION_VALUE].reset_index(drop=True)
     all_data = pd.concat((data.train_set, data.test_set)).reset_index(drop=True)
-    print("Skewness: " + str(all_data[TARGET_PREDICTION_VALUE].skew()))
-    print("Kurtosis: " + str(all_data[TARGET_PREDICTION_VALUE].kurt()))
     ## Dropping the target variable.
     all_data.drop([TARGET_PREDICTION_VALUE], axis=1, inplace=True)
     data_cleaning.fixing_skewness(all_data)
