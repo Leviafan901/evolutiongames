@@ -3,25 +3,29 @@ import matplotlib.pyplot as plt
 import matplotlib.style as style
 import numpy
 
-def customized_scatterplot(y, x):
+
+def customized_scatterplot(y, x, title):
     ## Sizing the plot.
     style.use('fivethirtyeight')
     plt.subplots(figsize=(12, 8))
     ## Plotting target variable with predictor variable(OverallQual)
     sns.scatterplot(y=y, x=x)
+    plt.title("Customized scatterplot - " + title, fontsize=30)
     plt.show()
 
 
-def linearity_regplot(y, x):
+def linearity_regplot(y, x, title):
     fig, (ax1, ax2) = plt.subplots(figsize=(12, 8), ncols=2, sharey=False)
     sns.scatterplot(y, x, ax=ax1)
     sns.regplot(y, x, ax=ax1)
+    plt.title("Reg plot - " + title, fontsize=30)
     plt.show()
 
 
-def linearity_residplot(y, x):
+def linearity_residplot(y, x, title):
     plt.subplots(figsize=(12, 8))
     sns.residplot(y, x)
+    plt.title("Resid plot - " + title, fontsize=30)
     plt.show()
 
 
@@ -43,4 +47,3 @@ def all_features_heatmap(train_set):
     ## Give title.
     plt.title("Heatmap of all the Features", fontsize=30)
     plt.show()
-
