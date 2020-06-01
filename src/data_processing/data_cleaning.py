@@ -2,6 +2,7 @@ from scipy.special import boxcox1p
 from scipy.stats import boxcox_normmax
 from scipy.stats import skew
 
+from src.data.Data import Data
 from src.data_preparation.features_engineering import TARGET_PREDICTION_VALUE
 
 
@@ -14,24 +15,22 @@ def fixing_skewness(data):
     skewed_features = high_skew.index
     for feat in skewed_features:
         data[feat] = boxcox1p(data[feat], boxcox_normmax(data[feat] + 1))
-    return skewed_features
 
 
 def removing_objects(data):
-    cleaned = data
-    for set in cleaned.sets:
+    sets = [data.train_set, data.test_set]
+    for i in sets:
         # Replacing str values with boolean 0 and 1 values
         sex = {'male': 0, 'female': 1}
-        set.sex = [sex[item] for item in set.sex]
+        i.sex = [sex[item] for item in i.sex]
         smoker = {'no': 0, 'yes': 1}
-        set.smoker = [smoker[item] for item in set.smoker]
+        i.smoker = [smoker[item] for item in i.smoker]
         region = {'northwest': 1, 'southeast': 2, 'northeast': 3, 'southwest': 4}
-        set.region = [region[item] for item in set.region]
-    return cleaned
+        i.region = [region[item] for item in i.region]
+    return Data(sets[0], sets[1])
 
 
 def convert_predict_value_to_int(data):
-    cleaned = data
-    for set in cleaned.sets:
+    sets = [data.train_set, data.test_set]
+    for set in sets:
         set[TARGET_PREDICTION_VALUE] = set[TARGET_PREDICTION_VALUE].astype('int64')
-    return cleaned

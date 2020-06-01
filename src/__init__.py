@@ -6,9 +6,10 @@ from src.data_preparation.features_engineering import final_sets
 
 
 def main():
-    data = data_cleaning.removing_objects(load_drop_empty('../data/train.csv', '../data/test.csv'))
-    cleaned_data = convert_predict_value_to_int(data)
-    X_train, X_test, y_train, y_test = final_sets(cleaned_data)
+    data = load_drop_empty('../data/train.csv', '../data/test.csv')
+    cleaned_data = data_cleaning.removing_objects(data)
+    convert_predict_value_to_int(cleaned_data)
+    X_train, X_test, y_train, y_test = final_sets(data)
     linear_regression(X_train, X_test, y_train, y_test)
 
 
