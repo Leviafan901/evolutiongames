@@ -21,13 +21,12 @@ def main():
     linearity_regplot(data.train_set.age, data.train_set.charges)
     linearity_residplot(data.train_set.age, data.train_set.charges)
     previous_data = data
-    data.train_set['charges'] = numpy.log1p(data.train_set['charges'])
+    data.train_set[TARGET_PREDICTION_VALUE] = numpy.log1p(data.train_set[TARGET_PREDICTION_VALUE])
     linearity_residplot(previous_data.train_set.age, previous_data.train_set.charges)
     linearity_residplot(data.train_set.age, data.train_set.charges)
-
+    plotting_3_chart(data.train_set, TARGET_PREDICTION_VALUE)
     all_data = pd.concat((data.train_set, data.test_set)).reset_index(drop=True)
     all_data.drop([TARGET_PREDICTION_VALUE], axis=1, inplace=True)
-    plt.show(sns.distplot(all_data['sex']))
 
 
 if __name__ == '__main__':
