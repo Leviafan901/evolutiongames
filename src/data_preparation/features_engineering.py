@@ -1,3 +1,4 @@
+import numpy
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -7,6 +8,7 @@ TARGET_PREDICTION_VALUE = 'charges'
 
 
 def final_sets(data):
+    data.train_set[TARGET_PREDICTION_VALUE] = numpy.log1p(data.train_set[TARGET_PREDICTION_VALUE])
     ## Saving the target values in to_predict
     to_predict = data.train_set[TARGET_PREDICTION_VALUE].reset_index(drop=True)
     all_data = pd.concat((data.train_set, data.test_set)).reset_index(drop=True)

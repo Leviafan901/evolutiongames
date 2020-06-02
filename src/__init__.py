@@ -1,5 +1,5 @@
 from src.data_processing.data_cleaning import convert_predict_value_to_int
-from src.model_training.train import linear_regression, neighbor_regression
+from src.model_training.train import linear_regression
 from src.data_processing import data_cleaning
 from src.data.load_data import load_drop_empty
 from src.data_preparation.features_engineering import final_sets
@@ -11,7 +11,6 @@ def main():
     convert_predict_value_to_int(cleaned_data)
     X_train, X_test, y_train, y_test = final_sets(data)
     linear_regression(X_train, X_test, y_train, y_test)
-    neighbor_regression(X_train, X_test, y_train, y_test)
 
 
 if __name__ == "__main__":
