@@ -25,7 +25,7 @@ We can no longer interpret a coefficient on a variable as the effect on the targ
 Heatmap is an excellent way to identify whether there is multicollinearity or not.
 ![All correlations map](images/All_Features_Correllations.png "Heatmap of correlations")
 
-Let's also find out how the sales price is distributed.
+Let's also find out how the 'charges' is distributed.
 ```
 print("Skewness: " + str(data.test_set[TARGET_PREDICTION_VALUE].skew()))
 print("Kurtosis: " + str(data.test_set[TARGET_PREDICTION_VALUE].kurt()))
@@ -73,4 +73,4 @@ def fixing_skewness(data):
 in order to fix the skewness.
 
 So, after all preparations the data looked good, taking into account that we have linear relations inside the data sets, I choose LinearRegression as a simple model for fitting and predicting the data.
-Including all the above featuring and adjustments I got the 0.79 accuracy result.
+Including all the above featuring and adjustments I got the **0.79** accuracy result.
